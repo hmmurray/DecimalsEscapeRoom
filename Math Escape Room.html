@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Math Challenge</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* allow screen to grow downward */
+  min-height: 100vh;       /* keep at least full viewport height */
+  background: #f4f4f4;
+}
+  .screen {
+  display: none;
+  width: 90%;
+  max-width: 800px;
+  text-align: center;
+  padding: 20px 0; /* add some spacing so images aren't cut */
+}
+    .active {
+      display: block;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 20px;
+      height: 60vh;
+      margin-bottom: 20px;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      border: 1px solid #ccc;
+      font-size: 1.2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+    }
+    .password {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    input {
+      flex: 1;
+      padding: 10px;
+      font-size: 1em;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+    .setup-image {
+  max-width: 100%;
+  height: auto; /* scale height proportionally */
+  margin: 10px 0;
+}
+    .celebration {
+      font-size: 2em;
+      color: gold;
+      text-shadow: 2px 2px 5px #000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen 0: Instructions & Setup -->
+  <div class="screen active" id="screen0">
+    <h2>Instructions</h2>
+    <div class="box">
+      <p>Tu es prisonnier dans un donjon !</p>
+      <img class="setup-image" src="https://static.wikia.nocookie.net/villainstournament/images/8/8b/Wicked_Witch_Of_the_West%27s_castle.jpg/revision/latest?cb=20181002161906" alt="Evil wizard and castle" />
+	<p>  Le seul moyen de t'échapper est de battre le maléfique dans une compétition de maths !</p>
+<img class="setup-image" src="https://thumbs.dreamstime.com/b/evil-witch-casting-curse-under-her-hood-green-dark-acting-like-shallow-depth-field-77576442.jpg" alt="Evil witch" />
+      <p><b>Instructions:</b> Résous chaque problème sur une feuille. Montre TOUT le travail. Puis, additionne les quatre réponses pour obtenir le <b>Mot de Passe</b>. Entre le mot de passe pour passer au niveau suivant. :)</p>
+    </div>
+    <button onclick="goToScreen(1)">Es-tu prêt? Bonne chance!</button>
+  </div>
+
+  <!-- Screen 1 -->
+  <div class="screen" id="screen1">
+    <h2>Niveau 1</h2>
+    <div class="grid">
+      <div class="box">18,4 + 3,88</div>
+      <div class="box">25,2 − 9,1</div>
+      <div class="box">25,29 + 482,8</div>
+      <div class="box">142 − 38,87</div>
+    </div>
+    <div class="password">
+      <input type="number" id="pass1" placeholder="Mot de passe" />
+      <button onclick="checkPassword(1)">Valider</button>
+    </div>
+    <div class="error" id="error1"></div>
+  </div>
+
+  <!-- Screen 2 -->
+  <div class="screen" id="screen2">
+    <h2>La sorcière est préparée à des questions plus difficiles !</h2>
+    <div class="grid">
+      <div class="box">1,2 × 1,2</div>
+      <div class="box">0,9 × 0,09</div>
+      <div class="box">15,2 × 4</div>
+      <div class="box">0,5 × 400</div>
+    </div>
+    <div class="password">
+      <input type="number" id="pass2" placeholder="Mot de passe" />
+      <button onclick="checkPassword(2)">Valider</button>
+    </div>
+    <div class="error" id="error2"></div>
+  </div>
+
+  <!-- Screen 3 -->
+  <div class="screen" id="screen3">
+    <h2>La sorcière est préparée à des questions plus difficiles !</h2>
+    <div class="grid">
+      <div class="box">14,5 ÷ 0,4</div>
+      <div class="box">2,56 ÷ 0,8</div>
+      <div class="box">765 ÷ 0,9</div>
+      <div class="box">32 ÷ 40</div>
+    </div>
+    <div class="password">
+      <input type="number" id="pass3" placeholder="Mot de passe" />
+      <button onclick="checkPassword(3)">Valider</button>
+    </div>
+    <div class="error" id="error3"></div>
+  </div>
+
+  <!-- Screen 4 -->
+  <div class="screen" id="screen4">
+    <h2>La sorcière est préparée à des questions plus difficiles !</h2>
+    <div class="grid">
+      <div class="box">Quelle estimation est la meilleure pour 250 ÷ 0,9? <b>230</b> ou <b>280</b>?</div>
+      <div class="box">Quelle estimation est la meilleure pour 30 ÷ 0,4? <b>48</b> ou <b>70</b>?</div>
+      <div class="box">Quelle estimation est la meilleure pour 75 ÷ 0,6? <b>135</b> ou <b>165</b>?</div>
+      <div class="box">Quelle estimation est la meilleure pour 500 ÷ 1,1? <b>470</b> ou <b>530</b>?</div>
+    </div>
+    <div class="password">
+      <input type="number" id="pass4" placeholder="Mot de passe" />
+      <button onclick="checkPassword(4)">Valider</button>
+    </div>
+    <div class="error" id="error4"></div>
+  </div>
+
+  <!-- Screen 5 -->
+  <div class="screen" id="screen5">
+    <h2>La sorcière est préparée à des questions plus difficiles !</h2>
+    <div class="grid">
+      <div class="box">Un ruban est coupé en 28 morceaux. Chaque morceau mesure 0,15 cm de long. Quelle était la longueur du ruban ?</div>
+      <div class="box">Un chien pèse 18,3 kg et un chat pèse 15,91 kg. De combien le chien est-il plus lourd que le chat ?</div>
+      <div class="box">Marie-Claire prépare un bol de punch pour son anniversaire. Elle pense que chaque invité boira 0,6 L de punch. Elle prépare 24 L au total. Combien de personnes viennent ?</div>
+      <div class="box">Jessie achète trois livres à 22,40 $ chacun. Elle paie avec 100 $. Combien d'argent lui reste-t-il ?</div>
+    </div>
+    <div class="password">
+      <input type="number" id="pass5" placeholder="Mot de passe" />
+      <button onclick="checkPassword(5)">Valider</button>
+    </div>
+    <div class="error" id="error5"></div>
+  </div>
+
+  <!-- Screen 6 -->
+  <div class="screen" id="screen6">
+    <h2>La sorcière est préparée à des questions plus difficiles !</h2>
+    <div class="grid">
+      <div class="box">4,3 × (14,2 − 9,1)</div>
+      <div class="box">9,8 − 3,2 ÷ 0,4 + 2,6</div>
+      <div class="box">(9,8 − 3,2) ÷ (0,4 + 2,6)</div>
+      <div class="box">8 − 3,6 ÷ 2</div>
+    </div>
+    <div class="password">
+      <input type="number" id="pass6" placeholder="Mot de passe" />
+      <button onclick="checkPassword(6)">Valider</button>
+    </div>
+    <div class="error" id="error6"></div>
+  </div>
+
+  <!-- Screen 7: Celebration -->
+  <div class="screen" id="screen7">
+    <h2 class="celebration">Félicitations ! Tu as réussi et la sorcière a fondu! Tu es un ROCKSTAR des maths !</h2>
+    <img class="setup-image" src="https://scmuseum.org/sites/default/files/styles/wysiwyg/public/wp_uploads/Melted-Witch-Blog.jpg?itok=2m7ib2PT" alt="Star celebration" />
+  </div>
+
+<script>
+const passwords = {
+  1: 649.6,    // Niveau 1 sum
+  2: 262.321,  // Niveau 2 sum
+  3: 890.25,   // Niveau 3 sum
+  4: 955,      // Niveau 4 sum (estimates added)
+  5: 79.39,    // Niveau 5 sum
+  6: 34.73     // Niveau 6 sum
+};
+
+function goToScreen(n) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(`screen${n}`).classList.add('active');
+}
+
+function checkPassword(screen) {
+  const inputField = document.getElementById(`pass${screen}`);
+  const error = document.getElementById(`error${screen}`);
+  
+  // Convert input to number safely, trimming whitespace
+  const input = Number(inputField.value.trim());
+  const correct = passwords[screen];
+
+  // Use a tolerance for floating-point sums, or exact comparison if integer
+  const tolerance = 0.01; // small value to handle floating-point sums
+  if (Math.abs(input - correct) < tolerance) {
+    goToScreen(screen + 1);
+    inputField.value = ''; // clear input
+    error.textContent = '';
+  } else {
+    error.textContent = 'Mot de passe incorrect.';
+  }
+}
+</script>
+
+
+</body>
+</html>
